@@ -7,4 +7,18 @@ import { FormGroup } from '@angular/forms';
 })
 export class CustomvalidatorService {
   constructor() {}
+
+  checkPasswordsMatch(password: string, confirmPassword: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const formGroup = control as FormGroup;
+      const valueOfPassword = formGroup.get(password)?.value;
+      const valueOfConfirmPassword = formGroup.get(confirmPassword)?.value;
+
+      if (valueOfPassword === valueOfConfirmPassword) {
+        return null;
+      } else {
+        return { passwordsDoNotMatch: true };
+      }
+    };
+  }
 }

@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  AbstractControl,
-  ValidatorFn,
-  ValidationErrors,
-} from '@angular/forms';
-// import { CustomvalidatorService } from '../services/customvalidator.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomvalidatorService } from '../services/customvalidator.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +11,8 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder // private customValidator: CustomvalidatorService
+    private fb: FormBuilder,
+    private customValidator: CustomvalidatorService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +28,12 @@ export class RegisterComponent implements OnInit {
         ],
         confirmPassword: [''],
       },
-      { validators: this.checkPasswordsAreEqual('password', 'confirmPassword') }
+      {
+        validators: this.customValidator.checkPasswordsMatch(
+          'password',
+          'confirmPassword'
+        ),
+      }
     );
   }
 
@@ -44,22 +43,5 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     console.log(form.value);
-  }
-
-  private checkPasswordsAreEqual(
-    password: string,
-    confirmPassword: string
-  ): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const formGroup = control as FormGroup;
-      const valueOfPassword = formGroup.get(password)?.value;
-      const valueOfConfirmPassword = formGroup.get(confirmPassword)?.value;
-
-      if (valueOfPassword === valueOfConfirmPassword) {
-        return null;
-      } else {
-        return { passwordsDoNotMatch: true };
-      }
-    };
   }
 }
