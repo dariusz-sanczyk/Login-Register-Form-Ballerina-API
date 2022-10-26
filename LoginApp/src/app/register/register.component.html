@@ -40,9 +40,15 @@
   <mat-form-field class="input__field" appearance="fill">
     <mat-label>Repeat password</mat-label>
     <input matInput type="password" formControlName="confirmPassword" />
-    <mat-error *ngIf="form['confirmPassword'].errors?.['passwordsDoNotMatch']"
+    <mat-error
+      *ngIf="form['confirmPassword'].touched && registerForm.errors?.['passwordsDoNotMatch']"
       >Passwords are not the same</mat-error
     >
+    <!-- <mat-hint
+      *ngIf="form['confirmPassword'].touched && registerForm.errors?.['passwordsDoNotMatch']"
+    >
+      Passwords do not match
+    </mat-hint> -->
   </mat-form-field>
 </form>
 <div class="btnlogin__container">

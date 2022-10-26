@@ -21,7 +21,32 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder // private customValidator: CustomvalidatorService
   ) {}
 
-  checkPasswordsAreEqual(
+  ngOnInit(): void {
+    this.registerForm = this.fb.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$'),
+          ],
+        ],
+        confirmPassword: [''],
+      },
+      { validators: this.checkPasswordsAreEqual('password', 'confirmPassword') }
+    );
+  }
+
+  get form() {
+    return this.registerForm.controls;
+  }
+
+  onSubmit(form: FormGroup) {
+    console.log(form.value);
+  }
+
+  private checkPasswordsAreEqual(
     password: string,
     confirmPassword: string
   ): ValidatorFn {
@@ -36,31 +61,5 @@ export class RegisterComponent implements OnInit {
         return { passwordsDoNotMatch: true };
       }
     };
-  }
-  ngOnInit(): void {
-    this.registerForm = this.fb.group(
-      {
-        email: ['', [Validators.required, Validators.email]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$'),
-          ],
-        ],
-        confirmPassword: [''],
-      },
-      {
-        validator: this.checkPasswordsAreEqual('password', 'confirmPassword'),
-      }
-    );
-  }
-
-  get form() {
-    return this.registerForm.controls;
-  }
-
-  onSubmit(form: FormGroup) {
-    console.log(form.value);
   }
 }
