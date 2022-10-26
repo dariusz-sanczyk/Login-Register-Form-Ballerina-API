@@ -1,0 +1,21 @@
+<main>
+  <form id="login" [formGroup]="loginForm" (submit)="onSubmit(loginForm)">
+    <mat-form-field class="input__field" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+    <mat-form-field class="input__field" appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input matInput type="email" formControlName="email" />
+    </mat-form-field>
+  </form>
+  <div class="link">
+    <a (click)="goToReset()">Reset password</a>
+  </div>
+  <div class="btnlogin__container">
+    <p>Wrong e-mail or password !</p>
+    <button mat-raised-button color="primary" type="submit" form="login">
+      Login
+    </button>
+  </div>
+</main>
