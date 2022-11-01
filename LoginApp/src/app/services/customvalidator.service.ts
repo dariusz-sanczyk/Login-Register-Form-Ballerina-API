@@ -17,6 +17,7 @@ export class CustomvalidatorService {
       if (valueOfPassword === valueOfConfirmPassword) {
         return null;
       } else {
+        formGroup.get(confirmPassword)?.setErrors({ bad: true });
         return { passwordsDoNotMatch: true };
       }
     };

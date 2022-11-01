@@ -1,14 +1,18 @@
-.progress__bar {
-  width: 50%;
-}
-
 button {
   width: 150px;
   margin-top: 15px;
+}
+
+.check__icon {
+  color: rgb(0, 184, 24);
 }
 
 p {
   margin: 0;
   font-weight: 500;
   text-align: left;
+}
+
+.progress__bar {
+  width: 50%;
 }

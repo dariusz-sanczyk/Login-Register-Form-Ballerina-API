@@ -1,8 +1,4 @@
-<form
-  id="register"
-  [formGroup]="registerForm"
-  (submit)="onSubmit(registerForm)"
->
+<form id="register" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="input__field" appearance="fill">
     <mat-label>E-mail</mat-label>
     <input
@@ -11,26 +7,32 @@
       formControlName="email"
       placeholder="geo@tikexample.com"
     />
+    <mat-icon class="check__icon" *ngIf="form['email'].valid" matSuffix
+      >done</mat-icon
+    >
     <mat-error *ngIf="!registerForm.valid"
       >You must enter e-mail adress</mat-error
     >
-    <mat-icon
+    <!-- <mat-icon
       class="tooltip__icon"
       matTooltip='E-mail must have valid pattern. For example: "geo@tikexample.com"'
       matTooltipPosition="after"
       >info</mat-icon
-    >
+    > -->
   </mat-form-field>
   <mat-form-field class="input__field" appearance="fill">
     <mat-label>Password</mat-label>
     <input matInput #password type="password" formControlName="password" />
+    <mat-icon class="check__icon" *ngIf="form['password'].valid" matSuffix
+      >done</mat-icon
+    >
     <mat-error *ngIf="!registerForm.valid">Wrong password pattern</mat-error>
-    <mat-icon
+    <!-- <mat-icon
       class="tooltip__icon"
       matTooltip="Password must be at least 8 characters long and includes 1 uppercase letter, 1 lowercase letter and 1 digit."
       matTooltipPosition="after"
       >info</mat-icon
-    >
+    > -->
   </mat-form-field>
 
   <p>Password strength:</p>
@@ -40,15 +42,15 @@
   <mat-form-field class="input__field" appearance="fill">
     <mat-label>Repeat password</mat-label>
     <input matInput type="password" formControlName="confirmPassword" />
-    <!-- <mat-error
-      *ngIf="form['confirmPassword'].dirty && registerForm.errors?.['passwordsDoNotMatch']"
+    <mat-error
+      *ngIf="form['confirmPassword'].dirty || registerForm.errors?.['passwordsDoNotMatch']"
       >Passwords do not match</mat-error
-    > -->
-    <mat-hint
+    >
+    <!-- <mat-hint
       *ngIf="form['confirmPassword'].dirty && registerForm.errors?.['passwordsDoNotMatch']"
     >
       Passwords do not match
-    </mat-hint>
+    </mat-hint> -->
   </mat-form-field>
 </form>
 <div class="btnlogin__container">

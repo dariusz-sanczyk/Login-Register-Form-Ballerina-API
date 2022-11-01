@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { Email } from 'src/app/models/email.model';
 
 @Component({
   selector: 'app-resetpassword',
@@ -8,9 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./resetpassword.component.scss'],
 })
 export class ResetpasswordComponent implements OnInit {
-  public resetForm: FormGroup;
+  public resetForm!: FormGroup;
 
-  constructor(private _router: Router, public fb: FormBuilder) {
+  constructor(
+    private _router: Router,
+    private fb: FormBuilder,
+    private loginService: LoginService
+  ) {}
+
+  ngOnInit(): void {
     this.resetForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
     });
@@ -20,9 +28,8 @@ export class ResetpasswordComponent implements OnInit {
     this._router.navigate(['/login']);
   }
 
-  onSubmit(form: FormGroup) {
-    console.log(form.value);
+  onSubmit(formData: Email) {
+    console.log(formData);
+    this.loginService.resetPassword(formData);
   }
-
-  ngOnInit(): void {}
 }
