@@ -43,11 +43,11 @@ export class LoginComponent implements OnInit {
         this.isLoginSuccesful = true;
       },
       error: (err) => {
+        this.isLoginError = true;
+
         if (err.status === 401) {
-          this.isLoginError = true;
           this.errorMessage = 'Wrong e-mail or password !';
         } else {
-          this.isLoginError = true;
           this.errorMessage =
             'There is some problem with the server. Please try again later.';
         }
