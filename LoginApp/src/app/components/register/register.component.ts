@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import {
-  EmailValidator,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomvalidatorService } from '../../services/customvalidator.service';
 import { User } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/login.service';
+import { GlobalVariables } from 'src/app/common/global-variables';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +13,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  isErrorOccur: boolean = false;
 
   constructor(
     private _router: Router,
@@ -26,15 +22,22 @@ export class RegisterComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
-  passwordPattern = '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$';
-
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
-        email: ['', [Validators.required, Validators.email]],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(GlobalVariables.emailPattern),
+          ],
+        ],
         password: [
           '',
-          [Validators.required, Validators.pattern(this.passwordPattern)],
+          [
+            Validators.required,
+            Validators.pattern(GlobalVariables.passwordPattern),
+          ],
         ],
 
         confirmPassword: [''],
@@ -59,12 +62,20 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isErrorOccur = false;
+
     const data: User = {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
     };
-    console.log(data);
-    this.loginService.registerUser(data);
-    this.reloadPage();
+
+    this.loginService.registerUser(data).subscribe({
+      next: () => {
+        this.reloadPage();
+      },
+      error: () => {
+        this.isErrorOccur = true;
+      },
+    });
   }
 }

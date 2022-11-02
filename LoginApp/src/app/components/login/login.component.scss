@@ -8,11 +8,26 @@ button {
   width: 150px;
 }
 
-.error__icon {
-  color: red;
+.error {
+  &__icon {
+    color: red;
+    transform: scale(1.2);
+  }
+
+  &__message {
+    color: rgb(180, 14, 14);
+  }
+}
+
+.hidden {
+  opacity: 0;
+  cursor: default;
+}
+
+.visible {
+  opacity: 1;
 }
 
 p {
-  opacity: 0;
-  cursor: default;
+  max-width: 320px;
 }

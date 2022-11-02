@@ -5,6 +5,14 @@ button {
 
 .check__icon {
   color: rgb(0, 184, 24);
+  transform: scale(1.2);
+}
+
+.error__message {
+  color: rgb(180, 14, 14);
+  text-align: center;
+  font-weight: 400;
+  max-width: 320px;
 }
 
 p {

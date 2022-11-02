@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './components/login/login.component';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
