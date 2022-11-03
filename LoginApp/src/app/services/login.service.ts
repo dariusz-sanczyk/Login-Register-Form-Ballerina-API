@@ -10,15 +10,15 @@ import { User } from '../models/user.model';
 export class LoginService {
   constructor(private _http: HttpClient) {}
 
-  loginUser(loginData: User) {
+  public loginUser(loginData: User) {
     return this._http.post(`${GlobalVariables.baseUrl}/auth/login`, loginData);
   }
 
-  registerUser(registerData: User) {
+  public registerUser(registerData: User) {
     return this._http.post(`${GlobalVariables.baseUrl}/users`, registerData);
   }
 
-  resetPassword(resetEmail: Email) {
+  public resetPassword(resetEmail: Email) {
     return this._http.post(
       `${GlobalVariables.baseUrl}/users/resetPassword`,
       resetEmail

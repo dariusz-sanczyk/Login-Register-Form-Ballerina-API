@@ -1,4 +1,9 @@
-<form id="register" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form
+  class="form form--register"
+  id="register"
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+>
   <mat-form-field class="input__field" appearance="fill">
     <mat-label>E-mail</mat-label>
     <input
@@ -7,7 +12,10 @@
       formControlName="email"
       placeholder="geo@tikexample.com"
     />
-    <mat-icon class="check__icon" *ngIf="form['email'].valid" matSuffix
+    <mat-icon
+      class="check__icon"
+      [ngClass]="form['password'].valid ? 'visible' : 'hidden'"
+      matSuffix
       >done</mat-icon
     >
     <mat-error *ngIf="!registerForm.valid"
@@ -23,7 +31,10 @@
   <mat-form-field class="input__field" appearance="fill">
     <mat-label>Password</mat-label>
     <input matInput #password type="password" formControlName="password" />
-    <mat-icon class="check__icon" *ngIf="form['password'].valid" matSuffix
+    <mat-icon
+      class="check__icon"
+      [ngClass]="form['password'].valid ? 'visible' : 'hidden'"
+      matSuffix
       >done</mat-icon
     >
     <mat-error *ngIf="!registerForm.valid">Wrong password pattern</mat-error>
