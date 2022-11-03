@@ -1,7 +1,9 @@
-.btnlogin__container {
-  align-items: center;
-  flex-direction: column;
-  margin: 30px 0;
+.btnlogin {
+  &__container {
+    align-items: center;
+    flex-direction: column;
+    margin: 30px 0;
+  }
 }
 
 button {

@@ -1,6 +1,6 @@
 import ballerina/http;
 
-public type UserData record {|
+public type User record {|
     int id?;
     string email;
     string password;
@@ -15,7 +15,7 @@ public type Email record {|
     string email;
 |};
 
-UserData[] users = [
+User[] users = [
         {id: 1, email: "johndoe@gmail.com", password: "Johndoe1"},
         {id: 2, email: "johncarmack@gmail.com", password: "Johncarmack1"},
         {id: 3, email: "johnromero@gmail.com", password: "Johnromero1"}
@@ -26,19 +26,20 @@ int NEW_ID = users.length();
 @http:ServiceConfig {
     cors: {
         allowOrigins: ["*"],
-        allowCredentials: true,
-        allowHeaders: ["*"]
+        allowCredentials: false,
+        allowHeaders: ["Access-Control-Allow-Origin", "Content-Type"]
+
     }
 }
 
 service / on new http:Listener(7070) {
 
-    resource function get users() returns UserData[] {
+    resource function get users() returns User[] {
         return users;
     }
 
-    resource function get users/[int id]() returns UserData|http:NotFound {
-        foreach UserData user in users {
+    resource function get users/[int id]() returns User|http:NotFound {
+        foreach User user in users {
             if user.id == id {
                 return user;
             }
@@ -46,7 +47,7 @@ service / on new http:Listener(7070) {
         return http:NOT_FOUND;
     }
 
-    resource function post users(@http:Payload UserData user) returns http:Created {
+    resource function post users(@http:Payload User user) returns http:Created {
         NEW_ID += 1;
         user.id = NEW_ID;
 
@@ -55,7 +56,7 @@ service / on new http:Listener(7070) {
     }
 
     resource function post users/resetPassword(@http:Payload Email emailData) returns http:Accepted|http:BadRequest {
-        foreach UserData user in users {
+        foreach User user in users {
             if user.email == emailData.email {
                 return http:ACCEPTED;
             }
@@ -63,7 +64,7 @@ service / on new http:Listener(7070) {
         return http:BAD_REQUEST;
     }
     resource function post auth/login(@http:Payload LoginData data) returns http:Ok|http:Unauthorized {
-        foreach UserData user in users {
+        foreach User user in users {
             if user.email == data.email && user.password == data.password {
                 return http:OK;
             }

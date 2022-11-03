@@ -3,16 +3,20 @@ button {
   margin-top: 15px;
 }
 
-.check__icon {
-  color: rgb(0, 184, 24);
-  transform: scale(1.2);
+.check {
+  &__icon {
+    color: rgb(0, 184, 24);
+    transform: scale(1.2);
+  }
 }
 
-.error__message {
-  color: rgb(180, 14, 14);
-  text-align: center;
-  font-weight: 400;
-  max-width: 320px;
+.error {
+  &__message {
+    color: rgb(180, 14, 14);
+    text-align: center;
+    font-weight: 400;
+    max-width: 320px;
+  }
 }
 
 p {
@@ -21,6 +25,8 @@ p {
   text-align: left;
 }
 
-.progress__bar {
-  width: 50%;
+.progress {
+  &__bar {
+    width: 50%;
+  }
 }

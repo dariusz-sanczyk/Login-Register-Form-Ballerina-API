@@ -51,14 +51,14 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  get form() {
+    return this.registerForm.controls;
+  }
+
   reloadPage() {
     this._router.routeReuseStrategy.shouldReuseRoute = () => false;
     this._router.onSameUrlNavigation = 'reload';
     this._router.navigate(['/login']);
-  }
-
-  get form() {
-    return this.registerForm.controls;
   }
 
   onSubmit() {

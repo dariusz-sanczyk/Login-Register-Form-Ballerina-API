@@ -1,44 +1,39 @@
-<main>
-  <form
-    id="login"
-    [formGroup]="loginForm"
-    (ngSubmit)="onSubmit(loginForm.value)"
+<form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+  <mat-form-field class="input__field" appearance="fill">
+    <mat-label>E-mail</mat-label>
+    <input matInput type="email" formControlName="email" />
+    <mat-icon
+      [ngClass]="isLoginError ? 'visible' : 'hidden'"
+      class="error__icon"
+      matSuffix
+      >close</mat-icon
+    >
+    <mat-error *ngIf="!loginForm.valid">You must enter e-mail adress</mat-error>
+  </mat-form-field>
+  <mat-form-field class="input__field" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-icon
+      [ngClass]="isLoginError ? 'visible' : 'hidden'"
+      class="error__icon"
+      matSuffix
+      >close</mat-icon
+    >
+    <mat-error *ngIf="!loginForm.valid">Password can't be blank</mat-error>
+  </mat-form-field>
+</form>
+<div class="link">
+  <a (click)="goToReset()">Reset password</a>
+</div>
+<div class="btnlogin__container">
+  <p
+    class="error__message"
+    [ngClass]="isLoginError || isServerError ? 'visible' : 'hidden'"
   >
-    <mat-form-field class="input__field" appearance="fill">
-      <mat-label>E-mail</mat-label>
-      <input matInput type="email" formControlName="email" />
-      <mat-icon
-        [ngClass]="isLoginError ? 'visible' : 'hidden'"
-        class="error__icon"
-        matSuffix
-        >close</mat-icon
-      >
-      <mat-error *ngIf="!loginForm.valid"
-        >You must enter e-mail adress</mat-error
-      >
-    </mat-form-field>
-    <mat-form-field class="input__field" appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" />
-      <mat-icon
-        [ngClass]="isLoginError ? 'visible' : 'hidden'"
-        class="error__icon"
-        matSuffix
-        >close</mat-icon
-      >
-      <mat-error *ngIf="!loginForm.valid">Password can't be blank</mat-error>
-    </mat-form-field>
-  </form>
-  <div class="link">
-    <a (click)="goToReset()">Reset password</a>
-  </div>
-  <div class="btnlogin__container">
-    <p class="error__message" [ngClass]="isLoginError ? 'visible' : 'hidden'">
-      {{ errorMessage }}
-    </p>
-    <p [ngClass]="isLoginSuccesful ? 'visible' : 'hidden'">Login succesful !</p>
-    <button mat-raised-button color="primary" type="submit" form="login">
-      Login
-    </button>
-  </div>
-</main>
+    {{ errorMessage }}
+  </p>
+  <p [ngClass]="isLoginSuccesful ? 'visible' : 'hidden'">Login succesful !</p>
+  <button mat-raised-button color="primary" type="submit" form="login">
+    Login
+  </button>
+</div>

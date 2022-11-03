@@ -46,9 +46,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.btnlogin__container {
-  display: flex;
-  justify-content: center;
+.btnlogin {
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 form {
@@ -57,10 +59,12 @@ form {
   justify-content: center;
 }
 
-.input__field {
-  margin-top: 20px;
-  padding: 0;
-  position: relative;
+.input {
+  &__field {
+    margin-top: 20px;
+    padding: 0;
+    position: relative;
+  }
 }
 
 .link {
@@ -70,11 +74,13 @@ form {
   cursor: pointer;
 }
 
-.tooltip__icon {
-  position: absolute;
-  transform: scale(1.5);
-  right: -48px;
-  top: -8px;
+.tooltip {
+  &__icon {
+    position: absolute;
+    transform: scale(1.5);
+    right: -48px;
+    top: -8px;
+  }
 }
 
 mat-password-strength .mat-progress-bar-fill::after {

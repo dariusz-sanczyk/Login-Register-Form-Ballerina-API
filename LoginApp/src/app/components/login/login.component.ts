@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoginSuccesful: boolean = false;
   isLoginError: boolean = false;
+  isServerError: boolean = false;
   errorMessage: string = 'x';
 
   constructor(
@@ -37,17 +38,18 @@ export class LoginComponent implements OnInit {
   onSubmit(form: User) {
     this.isLoginError = false;
     this.isLoginSuccesful = false;
+    this.isServerError = false;
 
     this.loginService.loginUser(form).subscribe({
       next: () => {
         this.isLoginSuccesful = true;
       },
       error: (err) => {
-        this.isLoginError = true;
-
         if (err.status === 401) {
+          this.isLoginError = true;
           this.errorMessage = 'Wrong e-mail or password !';
         } else {
+          this.isServerError = true;
           this.errorMessage =
             'There is some problem with the server. Please try again later.';
         }
