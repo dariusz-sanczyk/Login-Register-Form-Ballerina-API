@@ -69,14 +69,16 @@ p {
   cursor: pointer;
 }
 
-.tooltip {
+.input {
   &__icon {
-    position: absolute;
-    transform: scale(1.3);
-    right: -70px;
-    top: -8px;
-    &--reset {
-      right: -48px;
+    &--tooltip {
+      position: absolute;
+      transform: scale(1.3);
+      right: -70px;
+      top: -8px;
+      &--reset {
+        right: -48px;
+      }
     }
   }
 }

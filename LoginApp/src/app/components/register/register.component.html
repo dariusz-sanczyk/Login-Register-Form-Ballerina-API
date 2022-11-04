@@ -13,7 +13,7 @@
       placeholder="geo@tikexample.com"
     />
     <mat-icon
-      class="check__icon"
+      class="input__icon--check"
       [ngClass]="form['email'].valid ? 'visible' : 'hidden'"
       matSuffix
       >done</mat-icon
@@ -22,7 +22,7 @@
       >You must enter e-mail adress</mat-error
     >
     <mat-icon
-      class="tooltip__icon"
+      class="input__icon--tooltip"
       matTooltip='E-mail must have valid pattern. For example: "geo@tikexample.com"'
       matTooltipPosition="after"
       >info</mat-icon
@@ -32,14 +32,14 @@
     <mat-label>Password</mat-label>
     <input matInput #password type="password" formControlName="password" />
     <mat-icon
-      class="check__icon"
+      class="input__icon--check"
       [ngClass]="form['password'].valid ? 'visible' : 'hidden'"
       matSuffix
       >done</mat-icon
     >
     <mat-error *ngIf="!registerForm.valid">Wrong password pattern</mat-error>
     <mat-icon
-      class="tooltip__icon"
+      class="input__icon--tooltip"
       matTooltip="Password must be at least 8 characters long and includes 1 uppercase letter, 1 lowercase letter and 1 digit."
       matTooltipPosition="after"
       >info</mat-icon
