@@ -15,13 +15,14 @@ body {
 }
 
 button {
-  width: 150px;
+  width: 120px;
   margin-top: 15px;
 }
 
 .error {
   &__message {
     color: rgb(180, 14, 14);
+    text-align: center;
   }
 }
 
@@ -55,6 +56,10 @@ button {
     padding: 0;
     position: relative;
   }
+}
+
+p {
+  margin: 10px auto !important;
 }
 
 .router-link {

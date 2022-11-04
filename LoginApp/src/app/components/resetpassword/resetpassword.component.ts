@@ -14,6 +14,7 @@ export class ResetpasswordComponent implements OnInit {
   public resetForm!: FormGroup;
   public isEmailExist: boolean = false;
   public isEmailNotFound: boolean = false;
+  public isServerError: boolean = false;
   public errorMessage: string = '';
 
   constructor(
@@ -36,8 +37,8 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   public onSubmit(formData: Email) {
-    this.errorMessage = '';
     this.isEmailNotFound = false;
+    this.isServerError = false;
 
     this.loginService.resetPassword(formData).subscribe({
       next: () => {
@@ -47,7 +48,9 @@ export class ResetpasswordComponent implements OnInit {
       error: (err) => {
         if (err.status === 400) {
           this.isEmailNotFound = true;
+          this.errorMessage = 'Email not found in the database !';
         } else {
+          this.isServerError = true;
           this.errorMessage =
             'There is some problem with the server. Please try again later.';
         }

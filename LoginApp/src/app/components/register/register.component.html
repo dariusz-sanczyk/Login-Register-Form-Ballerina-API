@@ -14,7 +14,7 @@
     />
     <mat-icon
       class="check__icon"
-      [ngClass]="form['password'].valid ? 'visible' : 'hidden'"
+      [ngClass]="form['email'].valid ? 'visible' : 'hidden'"
       matSuffix
       >done</mat-icon
     >
@@ -63,10 +63,8 @@
     >
   </mat-form-field>
 </form>
-<p class="error__message" *ngIf="isErrorOccur">
-  There is some problem with the server. Please try again later.
-</p>
-<div class="btn-login__container">
+
+<div>
   <button
     mat-raised-button
     form="register"
@@ -76,4 +74,7 @@
   >
     Register
   </button>
+  <p class="error__message" *ngIf="isErrorOccur">
+    There is some problem with the server. Please try again later.
+  </p>
 </div>

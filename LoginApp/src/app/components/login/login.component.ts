@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public isLoginSuccesful: boolean = false;
   public isLoginError: boolean = false;
   public isServerError: boolean = false;
-  public errorMessage: string = 'x';
+  public errorMessage: string = '';
 
   constructor(
     private _router: Router,

@@ -31,14 +31,14 @@
   </div>
 </form>
 <div class="btn-login__container">
-  <p
-    class="error__message"
-    [ngClass]="isLoginError || isServerError ? 'visible' : 'hidden'"
-  >
-    {{ errorMessage }}
-  </p>
   <p [ngClass]="isLoginSuccesful ? 'visible' : 'hidden'">Login succesful !</p>
   <button mat-raised-button color="primary" type="submit" form="login">
     Login
   </button>
 </div>
+<p
+  class="error__message"
+  [ngClass]="isLoginError || isServerError ? 'visible' : 'hidden'"
+>
+  {{ errorMessage }}
+</p>
