@@ -11,17 +11,19 @@ import { GlobalVariables } from 'src/app/common/global-variables';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  isLoginSuccesful: boolean = false;
-  isLoginError: boolean = false;
-  isServerError: boolean = false;
-  errorMessage: string = 'x';
+  public loginForm!: FormGroup;
+  public isLoginSuccesful: boolean = false;
+  public isLoginError: boolean = false;
+  public isServerError: boolean = false;
+  public errorMessage: string = 'x';
 
   constructor(
     private _router: Router,
     private fb: FormBuilder,
     private loginService: LoginService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: [
         '',
@@ -31,11 +33,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  goToReset() {
+  public goToReset() {
     this._router.navigate(['/reset']);
   }
 
-  onSubmit(form: User) {
+  public onSubmit(form: User) {
     this.isLoginError = false;
     this.isLoginSuccesful = false;
     this.isServerError = false;
@@ -56,6 +58,4 @@ export class LoginComponent implements OnInit {
       },
     });
   }
-
-  ngOnInit(): void {}
 }

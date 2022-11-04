@@ -1,0 +1,19 @@
+@media (max-width: 599px) {
+  .mat-tab-label {
+    min-width: 50% !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .form-container {
+    padding: 15px 50px;
+  }
+}
+@media (max-width: 400px) {
+  .form-container {
+    padding: 15px;
+  }
+  .form {
+    width: 70%;
+  }
+}

@@ -26,11 +26,11 @@
     >
     <mat-error *ngIf="!loginForm.valid">Password can't be blank</mat-error>
   </mat-form-field>
-  <div class="link">
+  <div class="router-link">
     <a (click)="goToReset()">Reset password</a>
   </div>
 </form>
-<div class="btnlogin__container">
+<div class="btn-login__container">
   <p
     class="error__message"
     [ngClass]="isLoginError || isServerError ? 'visible' : 'hidden'"

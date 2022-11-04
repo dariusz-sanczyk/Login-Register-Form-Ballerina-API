@@ -11,10 +11,10 @@ import { GlobalVariables } from '../../common/global-variables';
   styleUrls: ['./resetpassword.component.scss'],
 })
 export class ResetpasswordComponent implements OnInit {
-  resetForm!: FormGroup;
-  isEmailExist: boolean = false;
-  isEmailNotFound: boolean = false;
-  errorMessage: string = '';
+  public resetForm!: FormGroup;
+  public isEmailExist: boolean = false;
+  public isEmailNotFound: boolean = false;
+  public errorMessage: string = '';
 
   constructor(
     private _router: Router,
@@ -31,11 +31,11 @@ export class ResetpasswordComponent implements OnInit {
     });
   }
 
-  goToLogin() {
+  public goToLogin() {
     this._router.navigate(['/login']);
   }
 
-  onSubmit(formData: Email) {
+  public onSubmit(formData: Email) {
     this.errorMessage = '';
     this.isEmailNotFound = false;
 

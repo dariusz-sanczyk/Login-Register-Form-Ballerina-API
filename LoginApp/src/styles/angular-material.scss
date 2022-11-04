@@ -1,0 +1,32 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
+$LoginApp-primary: mat.define-palette(mat.$indigo-palette);
+$LoginApp-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$LoginApp-warn: mat.define-palette(mat.$red-palette);
+
+$LoginApp-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $LoginApp-primary,
+      accent: $LoginApp-accent,
+      warn: $LoginApp-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($LoginApp-theme);
+
+mat-password-strength .mat-progress-bar-fill::after {
+  background-color: #4caf50;
+}
+
+mat-password-strength
+  .mat-progress-bar.mat-accent
+  .mat-progress-bar-fill::after {
+  background-color: #ffa126;
+}
+
+mat-password-strength .mat-progress-bar.mat-warn .mat-progress-bar-fill::after {
+  background-color: #ee1202;
+}

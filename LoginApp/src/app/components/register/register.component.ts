@@ -12,8 +12,8 @@ import { GlobalVariables } from 'src/app/common/global-variables';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;
-  isErrorOccur: boolean = false;
+  public registerForm!: FormGroup;
+  public isErrorOccur: boolean = false;
 
   constructor(
     private _router: Router,
@@ -51,17 +51,17 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  get form() {
+  public get form() {
     return this.registerForm.controls;
   }
 
-  reloadPage() {
+  public reloadPage() {
     this._router.routeReuseStrategy.shouldReuseRoute = () => false;
     this._router.onSameUrlNavigation = 'reload';
     this._router.navigate(['/login']);
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.isErrorOccur = false;
 
     const data: User = {
