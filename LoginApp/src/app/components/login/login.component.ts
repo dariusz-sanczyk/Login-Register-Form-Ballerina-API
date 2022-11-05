@@ -42,20 +42,22 @@ export class LoginComponent implements OnInit {
     this.isLoginSuccesful = false;
     this.isServerError = false;
 
-    this.loginService.loginUser(form).subscribe({
-      next: () => {
-        this.isLoginSuccesful = true;
-      },
-      error: (err) => {
-        if (err.status === 401) {
-          this.isLoginError = true;
-          this.errorMessage = 'Wrong e-mail or password !';
-        } else {
-          this.isServerError = true;
-          this.errorMessage =
-            'There is some problem with the server. Please try again later.';
-        }
-      },
-    });
+    if (this.loginForm.valid) {
+      this.loginService.loginUser(form).subscribe({
+        next: () => {
+          this.isLoginSuccesful = true;
+        },
+        error: (err) => {
+          if (err.status === 401) {
+            this.isLoginError = true;
+            this.errorMessage = 'Wrong e-mail or password !';
+          } else {
+            this.isServerError = true;
+            this.errorMessage =
+              'There is some problem with the server. Please try again later.';
+          }
+        },
+      });
+    }
   }
 }

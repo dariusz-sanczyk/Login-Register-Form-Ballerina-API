@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalVariables } from '../common/global-variables';
+import { environment } from 'src/environments/environment';
 import { Email } from '../models/email.model';
 import { User } from '../models/user.model';
 
@@ -11,16 +11,16 @@ export class LoginService {
   constructor(private _http: HttpClient) {}
 
   public loginUser(loginData: User) {
-    return this._http.post(`${GlobalVariables.baseUrl}/auth/login`, loginData);
+    return this._http.post(`${environment.baseUrl}/auth/login`, loginData);
   }
 
   public registerUser(registerData: User) {
-    return this._http.post(`${GlobalVariables.baseUrl}/users`, registerData);
+    return this._http.post(`${environment.baseUrl}/users`, registerData);
   }
 
   public resetPassword(resetEmail: Email) {
     return this._http.post(
-      `${GlobalVariables.baseUrl}/users/resetPassword`,
+      `${environment.baseUrl}/users/resetPassword`,
       resetEmail
     );
   }
