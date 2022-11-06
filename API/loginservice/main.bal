@@ -32,7 +32,7 @@ int NEW_ID = users.length();
     }
 }
 
-service / on new http:Listener(7070) {
+service / on new http:Listener(8080) {
 
     resource function get users() returns User[] {
         return users;
